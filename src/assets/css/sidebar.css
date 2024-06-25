@@ -102,9 +102,9 @@
   width: 100% !important;
 }
 .side-bar-item:hover {
-  border-left: 4px solid #cb0c9f;
+  border-left: 4px solid #0c85cb;
   transition: 0.2s;
-  background-color: #f3d9ec;
+  background-color: #d9e9f3;
 }
 .side-bar-item:hover .side-bar-item-icon {
   color: #363b64;
@@ -113,8 +113,8 @@
   color: #363b64;
 }
 .side-bar-item-active {
-  border-left: 4px solid #cb0c9f;
-  background-color: #f3d9ec;
+  border-left: 4px solid #0c85cb;
+  background-color: #d9e9f3;
 }
 .side-bar-item-icon {
   font-size: 18px;

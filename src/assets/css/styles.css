@@ -54,3 +54,8 @@ a:hover {
 .swal2-styled:focus {
   box-shadow: none !important;
 }
+
+.form-control:focus {
+  box-shadow: 0 0 0 2px #aed3e9;
+  border-color: #93cce2;
+}

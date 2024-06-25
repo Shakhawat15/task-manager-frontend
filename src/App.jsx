@@ -10,6 +10,10 @@ import CompletedPage from "./pages/CompletedPage";
 import CanceledPage from "./pages/CanceledPage";
 import ProfilePage from "./pages/ProfilePage";
 import Page404 from "./pages/Page404";
+import FullscreenLoader from "./components/MasterLayout/FullscreenLoader";
+import LoginPage from "./pages/LoginPage";
+import RegistrationPage from "./pages/RegistrationPage";
+import ForgatPassPage from "./pages/ForgatPassPage";
 
 function App() {
   return (
@@ -24,9 +28,13 @@ function App() {
             <Route exact path="/completed" element={<CompletedPage />} />
             <Route exact path="/canceled" element={<CanceledPage />} />
             <Route exact path="/profile" element={<ProfilePage />} />
+            <Route exact path="/login" element={<LoginPage />} />
+            <Route exact path="/registration" element={<RegistrationPage />} />
+            <Route exact path="/forgat-pass" element={<ForgatPassPage />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
+        <FullscreenLoader />
       </Fragment>
     </>
   );

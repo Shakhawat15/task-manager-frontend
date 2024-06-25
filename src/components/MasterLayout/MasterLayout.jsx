@@ -13,7 +13,7 @@ import { RiDashboardLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 
-export default function MasterLayout(props) {
+export default function MasterLayout({ children }) {
   let contentRef,
     sideNavRef = useRef();
 
@@ -60,7 +60,7 @@ export default function MasterLayout(props) {
                     src="https://yt3.ggpht.com/ytc/AKedOLRNgeV2pOHHLhb-uNlo95HH3yF3U_htLbT8_iWr=s48-c-k-c0x00ffffff-no-rj"
                     alt=""
                   />
-                  <h6>Rabbil Hasan</h6>
+                  <h6>Shakhawat Hossen</h6>
                   <hr className="user-dropdown-divider  p-0" />
                 </div>
                 <NavLink to="/Profile" className="side-bar-item">
@@ -102,7 +102,7 @@ export default function MasterLayout(props) {
               ? "side-bar-item-active side-bar-item mt-2"
               : "side-bar-item mt-2"
           }
-          to="/Create"
+          to="/create"
         >
           <AiOutlineEdit className="side-bar-item-icon" />
           <span className="side-bar-item-caption">Create New</span>
@@ -114,7 +114,7 @@ export default function MasterLayout(props) {
               ? "side-bar-item-active side-bar-item mt-2"
               : "side-bar-item mt-2"
           }
-          to="/All"
+          to="/all"
         >
           <BsListNested className="side-bar-item-icon" />
           <span className="side-bar-item-caption">New Task</span>
@@ -126,7 +126,7 @@ export default function MasterLayout(props) {
               ? "side-bar-item-active side-bar-item mt-2"
               : "side-bar-item mt-2"
           }
-          to="/Progress"
+          to="/progress"
         >
           <BsHourglass className="side-bar-item-icon" />
           <span className="side-bar-item-caption">In Progress</span>
@@ -138,7 +138,7 @@ export default function MasterLayout(props) {
               ? "side-bar-item-active side-bar-item mt-2"
               : "side-bar-item mt-2"
           }
-          to="/Completed"
+          to="/completed"
         >
           <AiOutlineCheckCircle className="side-bar-item-icon" />
           <span className="side-bar-item-caption">Completed</span>
@@ -150,7 +150,7 @@ export default function MasterLayout(props) {
               ? "side-bar-item-active side-bar-item mt-2"
               : "side-bar-item mt-2"
           }
-          to="/Canceled"
+          to="/canceled"
         >
           <MdOutlineCancelPresentation className="side-bar-item-icon" />
           <span className="side-bar-item-caption">Canceled</span>
@@ -158,7 +158,7 @@ export default function MasterLayout(props) {
       </div>
 
       <div ref={(div) => (contentRef = div)} className="content">
-        {props.children}
+        {children}
       </div>
     </Fragment>
   );

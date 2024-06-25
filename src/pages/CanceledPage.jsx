@@ -1,9 +1,17 @@
+import { Fragment, Suspense, lazy } from "react";
 import MasterLayout from "../components/MasterLayout/MasterLayout";
+import LazyLoader from "../components/MasterLayout/LazyLoader";
+
+const Canceled = lazy(() => import("../components/Canceled/Canceled"));
 
 export default function CanceledPage() {
   return (
-    <MasterLayout>
-      <h2>Canceled Page</h2>
-    </MasterLayout>
+    <Fragment>
+      <MasterLayout>
+        <Suspense fallback={<LazyLoader />}>
+          <Canceled />
+        </Suspense>
+      </MasterLayout>
+    </Fragment>
   );
 }
