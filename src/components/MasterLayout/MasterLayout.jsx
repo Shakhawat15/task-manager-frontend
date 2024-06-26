@@ -150,7 +150,7 @@ export default function MasterLayout({ children }) {
               ? "side-bar-item-active side-bar-item mt-2"
               : "side-bar-item mt-2"
           }
-          to="/canceled"
+          to="/login"
         >
           <MdOutlineCancelPresentation className="side-bar-item-icon" />
           <span className="side-bar-item-caption">Canceled</span>
