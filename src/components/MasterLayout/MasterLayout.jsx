@@ -63,7 +63,7 @@ export default function MasterLayout({ children }) {
                   <h6>Shakhawat Hossen</h6>
                   <hr className="user-dropdown-divider  p-0" />
                 </div>
-                <NavLink to="/login" className="side-bar-item">
+                <NavLink to="/profile" className="side-bar-item">
                   <AiOutlineUser className="side-bar-item-icon" />
                   <span className="side-bar-item-caption">Profile</span>
                 </NavLink>
