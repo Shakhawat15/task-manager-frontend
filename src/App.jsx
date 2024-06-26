@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { Fragment } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 // Pages
 import DashboardPage from "./pages/DashboardPage";
@@ -14,29 +15,49 @@ import FullscreenLoader from "./components/MasterLayout/FullscreenLoader";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ForgatPassPage from "./pages/ForgatPassPage";
+import { getToken } from "./helper/SessionHelper";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(!!getToken());
+
+  useEffect(() => {
+    const token = getToken();
+    setIsAuthenticated(!!token);
+  }, []);
+
   return (
-    <>
-      <Fragment>
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={<DashboardPage />} />
-            <Route exact path="/create" element={<CreatePage />} />
-            <Route exact path="/all" element={<NewPage />} />
-            <Route exact path="/progress" element={<ProgressPage />} />
-            <Route exact path="/completed" element={<CompletedPage />} />
-            <Route exact path="/canceled" element={<CanceledPage />} />
-            <Route exact path="/profile" element={<ProfilePage />} />
-            <Route exact path="/login" element={<LoginPage />} />
-            <Route exact path="/registration" element={<RegistrationPage />} />
-            <Route exact path="/forgat-pass" element={<ForgatPassPage />} />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </BrowserRouter>
-        <FullscreenLoader />
-      </Fragment>
-    </>
+    <Fragment>
+      <BrowserRouter>
+        <Routes>
+          {isAuthenticated ? (
+            <>
+              <Route path="/login" element={<Navigate to="/" replace />} />
+              <Route exact path="/" element={<DashboardPage />} />
+              <Route exact path="/create" element={<CreatePage />} />
+              <Route exact path="/all" element={<NewPage />} />
+              <Route exact path="/progress" element={<ProgressPage />} />
+              <Route exact path="/completed" element={<CompletedPage />} />
+              <Route exact path="/canceled" element={<CanceledPage />} />
+              <Route exact path="/profile" element={<ProfilePage />} />
+              <Route path="*" element={<Page404 />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route exact path="/login" element={<LoginPage />} />
+              <Route
+                exact
+                path="/registration"
+                element={<RegistrationPage />}
+              />
+              <Route exact path="/forgat-pass" element={<ForgatPassPage />} />
+              <Route path="*" element={<Page404 />} />
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
+      <FullscreenLoader />
+    </Fragment>
   );
 }
 
