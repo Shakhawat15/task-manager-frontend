@@ -9,7 +9,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const SubmitLogin = () => {
+  const SubmitLogin = async () => {
     let email = emailRef.value;
     let password = passRef.value;
 
@@ -18,10 +18,10 @@ export default function Login() {
     } else if (IsEmpty(password)) {
       ErrorToast("Password is Required!");
     } else {
-      LoginRequest(email, password).then((result) => {
+      await LoginRequest(email, password).then((result) => {
         if (result) {
-          window.location.reload();
           navigate("/");
+          window.location.reload();
         }
       });
     }

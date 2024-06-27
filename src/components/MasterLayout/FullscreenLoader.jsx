@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 export default function FullscreenLoader() {
   const loader = useSelector((state) => state.settings.loader);
-  console.log(loader);
   return (
     <>
       <div className={`${loader} LoadingOverlay`}>

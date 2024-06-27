@@ -4,8 +4,18 @@ import {
   AiOutlineDelete,
   AiOutlineEdit,
 } from "react-icons/ai";
+import { getTaskByStatus } from "../../apiRequest/apiRequest";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { formatDate } from "../../helper/DateHelper";
 
 export default function Canceled() {
+  useEffect(() => {
+    getTaskByStatus("Canceled");
+  }, []);
+
+  const canceledList = useSelector((state) => state.task.Canceled);
+
   return (
     <Container fluid={true} className="content-body">
       <div className="row p-0 m-0">
@@ -24,24 +34,27 @@ export default function Canceled() {
         </div>
       </div>
       <div className="row p-0 m-0">
-        <div className="col-12 col-lg-4 col-sm-6 col-md-4  p-2">
-          <div className="card h-100">
-            <div className="card-body">
-              <h6 className="animated fadeInUp">Title</h6>
-              <p className="animated fadeInUp">Description</p>
-              <p className="m-0 animated fadeInUp p-0">
-                <AiOutlineCalendar /> 22/22/2200
-                <a className="icon-nav text-primary mx-1">
-                  <AiOutlineEdit />
-                </a>
-                <a className="icon-nav text-danger mx-1">
-                  <AiOutlineDelete />
-                </a>
-                <a className="badge float-end bg-danger">status</a>
-              </p>
+        {canceledList.map((task, index) => (
+          <div key={index} className="col-12 col-lg-4 col-sm-6 col-md-4  p-2">
+            <div className="card h-100">
+              <div className="card-body">
+                <h6 className="animated fadeInUp">{task.title}</h6>
+                <p className="animated fadeInUp">{task.description}</p>
+                <p className="m-0 animated fadeInUp p-0">
+                  <AiOutlineCalendar />{" "}
+                  {formatDate(task.createdAt, "DD/MM/YYYY")}
+                  <a className="icon-nav text-primary mx-1">
+                    <AiOutlineEdit />
+                  </a>
+                  <a className="icon-nav text-danger mx-1">
+                    <AiOutlineDelete />
+                  </a>
+                  <a className="badge float-end bg-danger">Canceled</a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </Container>
   );
