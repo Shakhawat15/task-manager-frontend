@@ -9,6 +9,7 @@ import { getTaskByStatus } from "../../apiRequest/apiRequest";
 import { useSelector } from "react-redux";
 import { formatDate } from "../../helper/DateHelper";
 import { DeleteAlert } from "../../helper/DeleteAlert";
+import { UpdateAlert } from "../../helper/UpdateAlert";
 
 export default function Progress() {
   useEffect(() => {
@@ -23,6 +24,13 @@ export default function Progress() {
         getTaskByStatus("Progress");
       }
     });
+  };
+
+  const UpdateStatus = async (id, status) => {
+    const response = await UpdateAlert(id, status);
+    if (response) {
+      getTaskByStatus("Progress");
+    }
   };
 
   return (
@@ -52,7 +60,10 @@ export default function Progress() {
                 <p className="m-0 animated fadeInUp p-0">
                   <AiOutlineCalendar />{" "}
                   {formatDate(task.createdAt, "DD/MM/YYYY")}
-                  <a className="icon-nav text-primary mx-1">
+                  <a
+                    onClick={UpdateStatus.bind(this, task._id, task.status)}
+                    className="icon-nav text-primary mx-1"
+                  >
                     <AiOutlineEdit />
                   </a>
                   <a

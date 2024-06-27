@@ -17,12 +17,12 @@ import ForgatPassPage from "./pages/ForgatPassPage";
 import { getToken } from "./helper/SessionHelper";
 
 function App() {
+  console.log("getToken", getToken());
   if (getToken()) {
     return (
       <Fragment>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Navigate to="/" replace />} />
             <Route exact path="/" element={<DashboardPage />} />
             <Route exact path="/create" element={<CreatePage />} />
             <Route exact path="/all" element={<NewPage />} />

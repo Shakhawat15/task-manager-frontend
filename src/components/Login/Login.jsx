@@ -21,7 +21,7 @@ export default function Login() {
       await LoginRequest(email, password).then((result) => {
         if (result) {
           navigate("/");
-          window.location.reload();
+          // window.location.reload();
         }
       });
     }

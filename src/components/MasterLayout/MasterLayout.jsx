@@ -20,11 +20,11 @@ export default function MasterLayout({ children }) {
 
   const navigate = useNavigate();
 
-  const onLogout = () => {
+  const onLogout = async () => {
+    navigate("/login");
     clearToken();
     clearUser();
-    window.location.reload();
-    navigate("/login");
+    // window.location.reload();
   };
 
   const MenuBarClickHandler = () => {
