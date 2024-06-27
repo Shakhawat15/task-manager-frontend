@@ -1,6 +1,5 @@
 export function formatDate(dateInput, format) {
   const date = new Date(dateInput);
-  console.log("date", date);
   const options = {
     year: "numeric",
     month: "2-digit",

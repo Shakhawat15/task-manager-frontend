@@ -8,6 +8,7 @@ import {
 import { getTaskByStatus } from "../../apiRequest/apiRequest";
 import { useSelector } from "react-redux";
 import { formatDate } from "../../helper/DateHelper";
+import { DeleteAlert } from "../../helper/DeleteAlert";
 
 export default function Completed() {
   useEffect(() => {
@@ -15,6 +16,14 @@ export default function Completed() {
   }, []);
 
   const completedList = useSelector((state) => state.task.Completed);
+
+  const DeleteTask = (id) => {
+    DeleteAlert(id).then((res) => {
+      if (res) {
+        getTaskByStatus("Completed");
+      }
+    });
+  };
 
   return (
     <Container fluid={true} className="content-body">
@@ -46,7 +55,10 @@ export default function Completed() {
                   <a className="icon-nav text-primary mx-1">
                     <AiOutlineEdit />
                   </a>
-                  <a className="icon-nav text-danger mx-1">
+                  <a
+                    onClick={DeleteTask.bind(this, task._id)}
+                    className="icon-nav text-danger mx-1"
+                  >
                     <AiOutlineDelete />
                   </a>
                   <a className="badge float-end bg-success">Completed</a>

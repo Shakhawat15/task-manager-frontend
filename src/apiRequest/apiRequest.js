@@ -119,3 +119,19 @@ export const summaryTaskRequest = async () => {
     ErrorToast(error.response.data.message);
   }
 };
+
+export const deleteTaskRequest = async (id) => {
+  const URL = `${baseURL}/task/${id}`;
+  try {
+    store.dispatch(showLoader());
+    const response = await axios.delete(URL, AxiosHeader);
+    store.dispatch(hideLoader());
+    if (response.status === 200) {
+      SuccessToast(response.data.message);
+      return true;
+    }
+  } catch (error) {
+    store.dispatch(hideLoader());
+    ErrorToast(error.response.data.message);
+  }
+};

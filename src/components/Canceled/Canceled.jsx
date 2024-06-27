@@ -8,6 +8,7 @@ import { getTaskByStatus } from "../../apiRequest/apiRequest";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { formatDate } from "../../helper/DateHelper";
+import { DeleteAlert } from "../../helper/DeleteAlert";
 
 export default function Canceled() {
   useEffect(() => {
@@ -15,6 +16,14 @@ export default function Canceled() {
   }, []);
 
   const canceledList = useSelector((state) => state.task.Canceled);
+
+  const DeleteTask = (id) => {
+    DeleteAlert(id).then((res) => {
+      if (res) {
+        getTaskByStatus("Canceled");
+      }
+    });
+  };
 
   return (
     <Container fluid={true} className="content-body">
@@ -46,7 +55,10 @@ export default function Canceled() {
                   <a className="icon-nav text-primary mx-1">
                     <AiOutlineEdit />
                   </a>
-                  <a className="icon-nav text-danger mx-1">
+                  <a
+                    onClick={DeleteTask.bind(this, task._id)}
+                    className="icon-nav text-danger mx-1"
+                  >
                     <AiOutlineDelete />
                   </a>
                   <a className="badge float-end bg-danger">Canceled</a>
