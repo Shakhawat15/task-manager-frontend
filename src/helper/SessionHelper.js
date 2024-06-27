@@ -5,11 +5,11 @@ class SessionHelper {
   getToken() {
     return localStorage.getItem("token");
   }
-  clearToken() {
-    localStorage.removeItem("token");
-  }
   setUser(user) {
     localStorage.setItem("user", JSON.stringify(user));
+  }
+  getUser() {
+    return JSON.parse(localStorage.getItem("user"));
   }
   removeSession() {
     localStorage.clear();

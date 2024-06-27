@@ -12,7 +12,7 @@ import { MdOutlineCancelPresentation } from "react-icons/md";
 import { RiDashboardLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import { removeSession } from "../../helper/SessionHelper";
+import { getUser, removeSession } from "../../helper/SessionHelper";
 
 export default function MasterLayout({ children }) {
   let contentRef,
@@ -47,24 +47,28 @@ export default function MasterLayout({ children }) {
             <a className="icon-nav m-0 h5" onClick={MenuBarClickHandler}>
               <AiOutlineMenuUnfold />
             </a>
-            <img className="nav-logo mx-2" src={logo} alt="logo" />
+            <img
+              className="nav-logo mx-2"
+              src={getUser()["photo"]}
+              alt="logo"
+            />
           </Navbar.Brand>
 
           <div className="float-right h-auto d-flex">
             <div className="user-dropdown">
               <img
                 className="icon-nav-img icon-nav"
-                src="https://yt3.ggpht.com/ytc/AKedOLRNgeV2pOHHLhb-uNlo95HH3yF3U_htLbT8_iWr=s48-c-k-c0x00ffffff-no-rj"
+                src={getUser().photo}
                 alt=""
               />
               <div className="user-dropdown-content ">
                 <div className="mt-4 text-center">
                   <img
                     className="icon-nav-img"
-                    src="https://yt3.ggpht.com/ytc/AKedOLRNgeV2pOHHLhb-uNlo95HH3yF3U_htLbT8_iWr=s48-c-k-c0x00ffffff-no-rj"
+                    src={getUser()["photo"]}
                     alt=""
                   />
-                  <h6>Shakhawat Hossen</h6>
+                  <h6>{getUser()["firstName"]}</h6>
                   <hr className="user-dropdown-divider  p-0" />
                 </div>
                 <NavLink to="/profile" className="side-bar-item">
