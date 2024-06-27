@@ -1,13 +1,13 @@
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ErrorToast, IsEmail, IsEmpty } from "../../helper/FormHelper";
+import { Link } from "react-router-dom";
 import { LoginRequest } from "../../apiRequest/apiRequest";
+import { ErrorToast, IsEmail, IsEmpty } from "../../helper/FormHelper";
 
 export default function Login() {
   let passRef,
     emailRef = useRef();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const SubmitLogin = async () => {
     let email = emailRef.value;
@@ -20,8 +20,9 @@ export default function Login() {
     } else {
       await LoginRequest(email, password).then((result) => {
         if (result) {
-          navigate("/");
+          // navigate("/");
           // window.location.reload();
+          window.location.href = "/";
         }
       });
     }

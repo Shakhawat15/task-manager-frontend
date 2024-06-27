@@ -10,20 +10,16 @@ import {
 import { BsHourglass, BsListNested } from "react-icons/bs";
 import { MdOutlineCancelPresentation } from "react-icons/md";
 import { RiDashboardLine } from "react-icons/ri";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import { clearToken, clearUser } from "../../helper/SessionHelper";
+import { removeSession } from "../../helper/SessionHelper";
 
 export default function MasterLayout({ children }) {
   let contentRef,
     sideNavRef = useRef();
 
-  const navigate = useNavigate();
-
   const onLogout = async () => {
-    navigate("/login");
-    clearToken();
-    clearUser();
+    removeSession();
     // window.location.reload();
   };
 
