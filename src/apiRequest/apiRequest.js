@@ -10,6 +10,7 @@ import {
   SetProgressTask,
 } from "../redux/state-slice/taskSlice";
 import { SetSummary } from "../redux/state-slice/summarySlice";
+import { SetProfile } from "../redux/state-slice/profileSlice";
 
 const baseURL = `https://task-manager-server-api.vercel.app/api/v1`;
 // const baseURL = `http://localhost:3000/api/v1`;
@@ -145,6 +146,49 @@ export const updateStatusRequest = async (id, status) => {
     store.dispatch(hideLoader());
     if (response.status === 200) {
       SuccessToast(response.data.message);
+      return true;
+    }
+  } catch (error) {
+    store.dispatch(hideLoader());
+    ErrorToast(error.response.data.message);
+  }
+};
+
+export const getProfileRequest = async () => {
+  const URL = `${baseURL}/user-profile`;
+  try {
+    store.dispatch(showLoader());
+    const response = await axios.get(URL, AxiosHeader);
+    store.dispatch(hideLoader());
+    if (response.status === 200) {
+      store.dispatch(SetProfile(response.data.data));
+    } else {
+      ErrorToast("Something Went Wrong!");
+    }
+  } catch (error) {
+    store.dispatch(hideLoader());
+    ErrorToast(error.response.data.message);
+  }
+};
+
+export const updateProfileRequest = async (
+  firstName,
+  lastName,
+  photo,
+  mobile,
+  password,
+  email
+) => {
+  const URL = `${baseURL}/update-profile`;
+  const PostBody = { firstName, lastName, photo, mobile, password };
+  const userDetail = { firstName, lastName, photo, mobile, email };
+  try {
+    store.dispatch(showLoader());
+    const response = await axios.put(URL, PostBody, AxiosHeader);
+    store.dispatch(hideLoader());
+    if (response.status === 200) {
+      SuccessToast(response.data.message);
+      setUser(userDetail);
       return true;
     }
   } catch (error) {
