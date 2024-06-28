@@ -156,7 +156,7 @@ export default function Profile() {
                   <div className="col-4 p-2">
                     <button
                       onClick={UpdateMyProfile}
-                      className="btn w-100 float-end btn-primary animated fadeInUp"
+                      className="btn w-100 float-end btn-info animated fadeInUp"
                     >
                       Update
                     </button>
