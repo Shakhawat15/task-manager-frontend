@@ -47,11 +47,7 @@ export default function MasterLayout({ children }) {
             <a className="icon-nav m-0 h5" onClick={MenuBarClickHandler}>
               <AiOutlineMenuUnfold />
             </a>
-            <img
-              className="nav-logo mx-2"
-              src={getUser()["photo"]}
-              alt="logo"
-            />
+            <img className="nav-logo mx-2" src={logo} alt="logo" />
           </Navbar.Brand>
 
           <div className="float-right h-auto d-flex">
