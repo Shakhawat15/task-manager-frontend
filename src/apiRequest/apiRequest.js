@@ -2,7 +2,13 @@ import axios from "axios";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import store from "../redux/store/store";
 import { hideLoader, showLoader } from "../redux/state-slice/settingsSlice";
-import { getToken, setToken, setUser } from "../helper/SessionHelper";
+import {
+  getToken,
+  setEmail,
+  setOTP,
+  setToken,
+  setUser,
+} from "../helper/SessionHelper";
 import {
   SetCanceledTask,
   SetCompletedTask,
@@ -68,7 +74,6 @@ export const createTaskRequest = async (title, description) => {
     const response = await axios.post(URL, PostBody, AxiosHeader);
     store.dispatch(hideLoader());
 
-    console.log(response);
     if (response.status === 200) {
       SuccessToast(response.data.message);
       return true;
@@ -189,6 +194,57 @@ export const updateProfileRequest = async (
     if (response.status === 200) {
       SuccessToast(response.data.message);
       setUser(userDetail);
+      return true;
+    }
+  } catch (error) {
+    store.dispatch(hideLoader());
+    ErrorToast(error.response.data.message);
+  }
+};
+
+export const verifyEmailRequest = async (email) => {
+  const URL = `${baseURL}/verify-email/${email}`;
+  try {
+    store.dispatch(showLoader());
+    const response = await axios.get(URL);
+    store.dispatch(hideLoader());
+    if (response.status === 200) {
+      setEmail(email);
+      SuccessToast(response.data.message);
+      return true;
+    }
+  } catch (error) {
+    store.dispatch(hideLoader());
+    ErrorToast(error.response.data.message);
+  }
+};
+
+export const verifyOTPRequest = async (email, otp) => {
+  const URL = `${baseURL}/verify-otp/${email}/${otp}`;
+  try {
+    store.dispatch(showLoader());
+    const response = await axios.get(URL);
+    store.dispatch(hideLoader());
+    if (response.status === 200) {
+      SuccessToast(response.data.message);
+      setOTP(otp);
+      return true;
+    }
+  } catch (error) {
+    store.dispatch(hideLoader());
+    ErrorToast(error.response.data.message);
+  }
+};
+
+export const resetPasswordRequest = async (email, otp, password) => {
+  const URL = `${baseURL}/reset-password/${email}/${otp}`;
+  const PostBody = { password };
+  try {
+    store.dispatch(showLoader());
+    const response = await axios.put(URL, PostBody);
+    store.dispatch(hideLoader());
+    if (response.status === 200) {
+      SuccessToast(response.data.message);
       return true;
     }
   } catch (error) {

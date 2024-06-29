@@ -64,10 +64,7 @@ export default function Login() {
                   Sign Up
                 </Link>
                 <br />
-                <Link
-                  className="text-center animated fadeInUp"
-                  to="/forgat-pass"
-                >
+                <Link className="text-center animated fadeInUp" to="/send-otp">
                   Forget Password
                 </Link>
               </div>

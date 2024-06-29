@@ -15,9 +15,11 @@ import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ForgatPassPage from "./pages/ForgatPassPage";
 import { getToken } from "./helper/SessionHelper";
+import SendOTPPage from "./pages/AccountRecover/SendOTPPage";
+import VerifyOTPPage from "./pages/AccountRecover/VerifyOTPPage";
+import CreatePasswordPage from "./pages/AccountRecover/CreatePasswordPage";
 
 function App() {
-  console.log("getToken", getToken());
   if (getToken()) {
     return (
       <Fragment>
@@ -45,6 +47,13 @@ function App() {
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/registration" element={<RegistrationPage />} />
             <Route exact path="/forgat-pass" element={<ForgatPassPage />} />
+            <Route exact path="/send-otp" element={<SendOTPPage />} />
+            <Route exact path="/verify-otp" element={<VerifyOTPPage />} />
+            <Route
+              exact
+              path="/create-password"
+              element={<CreatePasswordPage />}
+            />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
